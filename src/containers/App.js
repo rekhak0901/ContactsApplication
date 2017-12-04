@@ -38,7 +38,7 @@ export class App extends Component {
     }
 
     /*
-    * 1. find the contact being edited in the contacts collection
+    * 1. find the contact being edited in the contacts collection with index
     * 2. show the editContactModal
     * 3. set the index to the state to be used by the editContact action to edit the right contact 
     * 4. set the contact being edited to the state to be used as default values for the edit contact modal

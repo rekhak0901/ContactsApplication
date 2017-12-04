@@ -1,7 +1,7 @@
 import React , { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Modal, Button, FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
-import { isEmpty } from 'lodash'
+import { isEmpty } from 'lodash';
 
 export default class AddContactModal extends Component {
 
@@ -20,9 +20,9 @@ export default class AddContactModal extends Component {
     }
     
     verifyName = () => {
-        const { name } = this.state;
-        // Regex from https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/email
-        return isEmpty(name) 
+        const {name} = this.state;
+        return isEmpty(name);
+        
     }
     
 
@@ -52,12 +52,13 @@ export default class AddContactModal extends Component {
                             </ControlLabel>
                             <FormControl
                                 id='contact_name'
-                                type='text'
+                                type='required'
                                 placeholder="Enter name"
                                 onChange={this.handleOnNameChange}
                             />
                             {this.verifyName() && <HelpBlock> Name cannot be blank </HelpBlock>}
                         </FormGroup>
+
                         <FormGroup>
                                     <ControlLabel>
                                         Phone:
@@ -71,11 +72,11 @@ export default class AddContactModal extends Component {
                                         <FormControl 
                                             componentClass="select" 
                                             placeholder='Phone Type'
-                                            id='contact_type'
-                                        >
-                                        <option value="home"> home </option>
-                                        <option value="work"> work </option>
-                                        <option value="mobile"> mobile </option>
+                                            id='contact_type'>
+                                        
+                                            <option value="home"> home </option>
+                                            <option value="work"> work </option>
+                                            <option value="mobile"> mobile </option>
                                         </FormControl>
                                     </FormGroup>
                         </FormGroup>
@@ -109,7 +110,7 @@ export default class AddContactModal extends Component {
                     <Button 
                         bsStyle="primary" 
                         onClick={addContact} 
-                        disabled={this.verifyEmailId() || this.verifyName()}
+                        disabled = {this.verifyEmailId() || this.verifyName()}
                     > 
                     Add
                     </Button>
