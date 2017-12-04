@@ -60,48 +60,48 @@ export default class AddContactModal extends Component {
                         </FormGroup>
 
                         <FormGroup>
-                                    <ControlLabel>
+                            <ControlLabel>
                                         Phone:
-                                    </ControlLabel>
-                                    <FormControl
-                                    id='contact_number'
-                                    type='number'
-                                    placeholder="Enter phone number"
-                                    />
-                                    <FormGroup>
-                                        <FormControl 
-                                            componentClass="select" 
-                                            placeholder='Phone Type'
-                                            id='contact_type'>
+                            </ControlLabel>
+                            <FormControl
+                                id='contact_number'
+                                type='number'
+                                placeholder="Enter phone number"
+                            />
+                           <FormControl 
+                                componentClass="select" 
+                                placeholder='Phone Type'
+                                id='contact_type'>
                                         
-                                            <option value="home"> home </option>
-                                            <option value="work"> work </option>
-                                            <option value="mobile"> mobile </option>
-                                        </FormControl>
-                                    </FormGroup>
+                                <option value="home"> home </option>
+                                <option value="work"> work </option>
+                                <option value="mobile"> mobile </option>
+                            </FormControl>
                         </FormGroup>
+
                         <FormGroup>
                             <ControlLabel>
                                 Email id:
                             </ControlLabel>
-                        <FormControl
-                        id='contact_email'
-                        type='text'
-                        placeholder="Enter email id"
-                        onChange={this.handleOnEmailChange}
-                        />
-                        {this.verifyEmailId() && <HelpBlock> your email is invalid </HelpBlock>}
+                            <FormControl
+                                id='contact_email'
+                                type='text'
+                                placeholder="Enter email id"
+                                onChange={this.handleOnEmailChange}
+                            />
+                            {this.verifyEmailId() && <HelpBlock> your email is invalid </HelpBlock>}
                         </FormGroup>
+                        
                         <FormGroup>
                             <ControlLabel>
                                 Address:
                             </ControlLabel>
                             <FormControl
-                            id='contact_address'
-                            type='text'
-                            placeholder="Enter address"
+                                id='contact_address'
+                                type='text'
+                                placeholder="Enter address"
                             />
-                        </FormGroup>
+                       </FormGroup>
                     </form>
                 </Modal.Body>
 
@@ -112,10 +112,10 @@ export default class AddContactModal extends Component {
                         onClick={addContact} 
                         disabled = {this.verifyEmailId() || this.verifyName()}
                     > 
-                    Add
+                        Add
                     </Button>
                 </Modal.Footer>
-        </Modal>
+            </Modal>
       );
     }
 }

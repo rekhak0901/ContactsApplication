@@ -52,7 +52,11 @@ export class App extends Component {
             editContactIndex:index
         });
     }
-
+    
+    /*
+    *get the right index from the state
+    *passing into action creator
+    */
     deleteItemAction = (index) => () => {
         const { deleteItem } = this.props.actions
         deleteItem(index);
@@ -60,7 +64,7 @@ export class App extends Component {
 
     /*
     *get the right index from the state
-    *call the save with the index and values from the input fields
+    *clicking on edit with the index and the values from the input fields
     *passing into action creator
     *set isEditContactModalVisible to false
     */
@@ -76,6 +80,11 @@ export class App extends Component {
         
     }
 
+    /*
+    *clicking on add with the values from the input fields
+    *passing into action creator
+    *set isAddContactModalVisible to false
+    */
     handleOnAddContact = () => {
         const name = $('#add_contact_modal').find('#contact_name').val();
         const phone = $('#add_contact_modal').find('#contact_number').val();

@@ -42,90 +42,96 @@ export default class EditContactModal extends Component {
         this.setState({ name: event.target.value})
     }
 
-render = () => {
-    const { isVisible, onCancel, editContact, contact } = this.props;
-    const { name, number, phoneType, email, address } = contact;
+    render = () => {
+        const { isVisible, onCancel, editContact, contact } = this.props;
+        const { name, number, phoneType, email, address } = contact;
 
-    return (
-<Modal id='edit_contact_modal' show={isVisible}>
-        <Modal.Header>
-        <Modal.Title>Edit {name} </Modal.Title>
-        </Modal.Header>
+        return (
+            <Modal id='edit_contact_modal' show={isVisible}>
+                <Modal.Header>
+                    <Modal.Title>Edit {name} </Modal.Title>
+                </Modal.Header>
 
-        <Modal.Body>
-            <form>
-                <FormGroup>
-                <ControlLabel>
-                    Name:
-                </ControlLabel>
-                <FormControl
-                id='contact_name'
-                type='text'
-                defaultValue={name}
-                onChange={this.handleOnNameChange}
-                />
-                {this.verifyName() && <HelpBlock> Name cannot be blank </HelpBlock>}
-                </FormGroup>
+                <Modal.Body>
+                     <form>
+                        <FormGroup>
+                            <ControlLabel>
+                                Name:
+                            </ControlLabel>
+                            <FormControl
+                                id='contact_name'
+                                type='text'
+                                defaultValue={name}
+                                onChange={this.handleOnNameChange}
+                            />
+                            {this.verifyName() && <HelpBlock> Name cannot be blank </HelpBlock>}
+                        </FormGroup>
 
-                <FormGroup>
-                <ControlLabel>
-                    Phone:
-                </ControlLabel>
-                <FormControl
-                id='contact_number'
-                type='number'
-                defaultValue={number}
-                />
-                </FormGroup>
+                        <FormGroup>
+                            <ControlLabel>
+                                Phone:
+                            </ControlLabel>
+                            <FormControl
+                                id='contact_number'
+                                type='number'
+                                defaultValue={number}
+                            />
+                        </FormGroup>
 
-                <FormGroup>
-                <ControlLabel>
-                     Type:
-                </ControlLabel>    
-                <FormControl 
-                id='contact_type'
-                defaultValue={phoneType} 
-                componentClass="select">
-                <option value="home"> home </option>
-                <option value="work"> work </option>
-                <option value="mobile"> mobile </option>
-                </FormControl>
-                </FormGroup>
+                        <FormGroup>
+                            <ControlLabel>
+                                Type:
+                            </ControlLabel>    
+                            <FormControl 
+                                id='contact_type'
+                                defaultValue={phoneType} 
+                                componentClass="select">
 
-                <FormGroup>
-                <ControlLabel>
-                    Email id:
-                </ControlLabel>
-                <FormControl
-                id='contact_email'
-                type='text'
-                defaultValue={email}
-                onChange={this.handleOnEmailChange}
-                />
-                {this.verifyEmailId() && <HelpBlock> your email is invalid </HelpBlock>}
-                </FormGroup>
+                                <option value="home"> home </option>
+                                <option value="work"> work </option>
+                                <option value="mobile"> mobile </option>
+                            </FormControl>
+                        </FormGroup>
 
-                <FormGroup>
-                <ControlLabel>
-                    Address:
-                </ControlLabel>
-                <FormControl
-                id='contact_address'
-                type='text'
-                defaultValue={address}
-                />
-                </FormGroup>
-            </form>
-        </Modal.Body>
+                        <FormGroup>
+                            <ControlLabel>
+                                Email id:
+                            </ControlLabel>
+                            <FormControl
+                                id='contact_email'
+                                type='text'
+                                defaultValue={email}
+                                onChange={this.handleOnEmailChange}
+                            />
+                            {this.verifyEmailId() && <HelpBlock> your email is invalid </HelpBlock>}
+                        </FormGroup>
 
-        <Modal.Footer>
-        <Button onClick={onCancel}>Cancel</Button>
-        <Button bsStyle="primary" onClick={editContact} disabled={this.verifyEmailId() || this.verifyName()}>Update</Button>
-        </Modal.Footer>
-  </Modal>
-);
+                        <FormGroup>
+                            <ControlLabel>
+                                Address:
+                            </ControlLabel>
+                            <FormControl
+                                id='contact_address'
+                                type='text'
+                                defaultValue={address}
+                            />
+                        </FormGroup>
+                    </form>
+                </Modal.Body>
 
-}
+                <Modal.Footer>
+                    <Button onClick={onCancel}>Cancel</Button>
+                    <Button 
+                        bsStyle="primary" 
+                        onClick={editContact} 
+                        disabled={this.verifyEmailId() || this.verifyName()}>
+                        Update
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        );
+
+    }
 
 }
 

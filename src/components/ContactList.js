@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import ContactItem from './ContactItem';
 
-class ContactList extends Component {
+export default class ContactList extends Component {
 
     render() {
         const { contacts, deleteItemAction, openEditContactModal } = this.props;
@@ -20,12 +20,3 @@ class ContactList extends Component {
         );
     }
 }
-
-ContactList.propTypes = {
-  contacts: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    number: PropTypes.string.isRequired
-  }).isRequired).isRequired
-};
-
-export default ContactList;
