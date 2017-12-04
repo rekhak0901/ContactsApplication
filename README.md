@@ -1,8 +1,8 @@
 ## Introduction
 
-It is a simple contact app implemented with React and Redux.
+It is a simple contact app implemented with React and Redux as per the requirements given.
 
-The app mainly shows how to use Redux and basic concepts (action, reducer and store) of Reudx.
+The app mainly shows - how to use Redux and basic concepts (action, reducer and store) of Redux.
 
 
 ## Installation
