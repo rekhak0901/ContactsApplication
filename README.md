@@ -27,14 +27,6 @@ For this simple app, there are several startup scripts in package.json:
 
 Use `npm start` or `npm run dev` command to start the dev server.
 
-Redux Devtools are enabled by default in development:
-
-- `CTRL+H` Toggle DevTools Dock
-- `CTRL+Q` Move DevTools Dock Position
-
-![issue](https://cloud.githubusercontent.com/assets/5880320/14728909/aa80f3bc-086b-11e6-8276-339e9805ca93.PNG)
-
-
 ### Building and Running Production Server
 
 Use `npm run prod` to build and then run production server.
@@ -42,13 +34,13 @@ Use `npm run prod` to build and then run production server.
 
 
 # intuit-contacts-manager
-This will make managing Intuit contacts a breeze
+This will make managing contacts a breeze
 
 By Rekha, for Intuit- as a take home programming challenge.
 
 # Designing the Application
 This application will be built using modern front-end tools and technologies
-The back end will be seeded and mocked out with just sample data.
+The back-end will be seeded and mocked out with just sample data.
 
 ### Technologies:
  1. ES6: the language in which the project is written in
