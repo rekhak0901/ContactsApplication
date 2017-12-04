@@ -1,8 +1,8 @@
 ## Introduction
 
-It's a simple contact app implemented with React and Redux.
+It is a simple contact app implemented with React and Redux.
 
-The app shows how to use Redux and basic concepts (action, reducer and store) of Reudx.
+The app mainly shows how to use Redux and basic concepts (action, reducer and store) of Reudx.
 
 
 ## Installation
@@ -44,27 +44,24 @@ Use `npm run prod` to build and then run production server.
 # intuit-contacts-manager
 This will make managing Intuit contacts a breeze
 
-By Rekha, for Intuit as a take home programming challenge.
+By Rekha, for Intuit- as a take home programming challenge.
 
 # Designing the Application
 This application will be built using modern front-end tools and technologies
-The back end will be seeded and mocked out with sample data.
+The back end will be seeded and mocked out with just sample data.
 
 ### Technologies:
- 1. ES6: the language the project is written in
+ 1. ES6: the language in which the project is written in
  2. Node: the environment the code gets executed in
  3. Webpack: the file bundler when building the project
- 4. ReactJS: the front end framework used to design the user interface
- 5. Redux: the state management library to handle your data
+ 4. ReactJS: the front-end framework used to design the user interface
+ 5. Redux: the state management library to handle data
  6. Bootstrap: the components used to interact with the web page ( menu's, buttons, inputfields)
   
 ### Supporting Libraries
  1. Lodash: an utility library to work with data in javascript
   
-## Testing tools
- 1. Jest: used to write tests
- 2. Enzyme: a utility library that helps write tests
- 3. Chai: an assertion library
+  
   
 # Learning the technologies
 
@@ -76,7 +73,7 @@ https://www.codecademy.com/tracks/web
 2. Make a Website
 https://www.codecademy.com/learn/make-a-website
 
-3. Download tools: node, git, xcode, and vscode
+3. Download tools: node, git, xcode and vscode
 
 ## Day 2
 learning javascript
@@ -117,7 +114,7 @@ deeper dive/refresh
 ## Day 5
 1. refresh day 2-4, focus on difficult topics
 2. __string templating__ 
-3. __Object destructring__
+3. __Object destructring__ (http://wesbos.com/destructuring-objects/)
 4. Object destructuring default values
 5. spreading object properties or array
 6. recap blocks 
@@ -125,24 +122,23 @@ deeper dive/refresh
 ## Day 6
 project start
 1. find a react/redux boilerplate code that used webpack
-2. Udemy course on advanced react
+2. Udemy course on modern react with redux
 
 ## Day 7
 1. props
-2. propTypes and defaultProps: https://reactjs.org/docs/typechecking-with-proptypes.html we need to pull in this library
+2. propTypes and defaultProps: https://reactjs.org/docs/typechecking-with-proptypes.html 
 3. containers vs components
 4. action creators ( thunks )
 5. reducers
 6. mapStateToProps and mapDispatchToProps
 
 ## Day 8
-1. bootstrap components: https://reactjs.org/docs/react-dom.html
+1. bootstrap components: https://react-bootstrap.github.io/components.html#overlays
 2. eslint and linting using airbnbs style guide
-3. debugging tools
+3. debugging tool (optional)
 
 
 ## Day 9
-
 
 ## additional:
 1. es6 (modern javascript ) https://www.youtube.com/watch?v=IEf1KAcK6A8
@@ -155,4 +151,25 @@ project start
 2. coding playground: https://codepen.io
 
 
+## Day 10
+1. get the boilerplate code for the Contacts Application
+2. install the packages
+3. try to understand the application
+
+## Day 11
+1. Revisited Udemy course on modern react with redux.(left with few more courses to complete)
+2. Work on Contacts Application
+
+## Day 12
+1. More focus on React-Bootstrap for the bootstrap components to use in the Contacts Application
+2. Work on Contacts Application
+3. Push the file into Github repository to keep it updated and in sync with vs code.
+
+## Day 13
+1. Work on Contacts Application
+2. Add Validations
+
+## Day 14
+1. Revisit few concepts on React and Redux
+2. Work on Contacts Application
 
