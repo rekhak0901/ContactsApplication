@@ -1,55 +1,38 @@
-import React, { Component, PropTypes } from 'react'
-import contactIcon from "../images/contact.png";
+import React, { Component, PropTypes } from 'react';
+import { deleteItem } from '../redux/actions';
 
-class ContactItem extends Component {
-    
+export default class ContactItem extends Component {
+
     render() {
-        const { id, onEditClick } = this.props;
-        return (
-        <a href="#" className="list-group-item">
+      const {
+          id,
+          onEditClick,
+          onDeleteClick,
+          contact : {
+            name,
+            number,
+            phoneType,
+            email,
+            address
+          }
+        } = this.props;
+
+      return (
+         <a href="#" className="list-group-item">
             <div className="pull-right">
-                <span className="glyphicon glyphicon-pencil" onClick={ onEditClick(id)}></span>
+                <span className="glyphicon glyphicon-pencil" onClick={onEditClick(id)}></span>
                  &nbsp;&nbsp;
-                <span className="glyphicon glyphicon-remove" onClick={ e => this._itemDeleteHandler(e) }></span>
+                <span className="glyphicon glyphicon-remove" onClick={onDeleteClick(id)}></span>
             </div>
-            <img id="contact-icon" className="pull-left" src={ contactIcon } alt="contact"/>
             <address>
-                <strong>{this.props.name}</strong><br/>
-                <abbr title="Phone">Phone:</abbr> {this.props.number}<br/>
-                <abbr title="Email">Email:</abbr> {this.props.email}<br/>
-                <abbr title="Address">Address:</abbr> {this.props.address}<br/>
+                <h3>{name}</h3><br/>
+                <strong title="Phone">Phone:</strong> {number}
+                &nbsp;&nbsp;
+                <strong title="PhoneType">Type:</strong> {phoneType}<br/>
+                <strong title="Email">Email:</strong> {email}<br/>
+                <strong title="Address">Address:</strong> {address}<br/>
             </address>
-            </a>
-        );
+        </a>
+    );
     }
-  
-    _itemDeleteHandler(e) {
-        e.preventDefault();
-        this.props.onDeleteClick(this.props.id);
-    }
-    
-    _openEditModal(e) {
-        e.preventDefault();
-        
-        this.props.onEditClick(this.props.id);
-        
-		$('#edit_contact_modal').modal('show');
-        
-        var name = this.props.name;
-        var number = this.props.number;
-        
-        $('#edit_contact_modal').on('shown.bs.modal', function () {
-            $('#edit_contact_modal').find('#contact_name').val(name);
-            $('#edit_contact_modal').find('#contact_number').val(number);
-            $('#edit_contact_modal').find('#contact_name').focus()
-        });
-		
-	}
 }
-
-ContactItem.propTypes = {
-    name: PropTypes.string.isRequired,
-    number: PropTypes.string.isRequired
-};
-
-export default ContactItem

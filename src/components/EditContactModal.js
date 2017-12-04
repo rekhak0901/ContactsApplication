@@ -1,66 +1,131 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import { Modal, Button, FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
+import { isEmpty } from 'lodash';
 
-class ContactModal extends Component {
-    render() {
-        return(
-            <div id="edit_contact_modal" className="modal fade" tabindex="-1" role="dialog">
-                <div className="modal-dialog">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 className="modal-title">Edit contact</h4>
-                        </div>
-                        <div className="modal-body">
-                            <form>
-                                <div className="form-group">
-                                    <label htmlFor="contact_name" className="control-label">Name:</label>
-                                    <input type="text" className="form-control" id="contact_name"/>
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="contact_number" className="control-label">Phone:</label>
-                                    <input type="text" className="form-control" id="contact_number"/>
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="contact_email" className="control-label">Email_id:</label>
-                                    <input type="text" className="form-control" id="contact_email"/>
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="contact_address" className="control-label">Address:</label>
-                                    <input type="text" className="form-control" id="contact_address"/>
-                                </div>
-                            </form>
-                        </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-default" data-dismiss="modal" onClick={this._clearContactForm.bind(this)}>Close</button>
-                            <button type="button" className="btn btn-primary" onClick={this._updateContactHandler.bind(this)}>Update</button>
-                        </div>
-                    </div> 
-                </div> 
-            </div> 
-		);
+export default class EditContactModal extends Component { 
+
+    constructor(props){
+        super(props);
+        this.state = {
+            email: '',
+            name: '',
+    
+        }
+    }
+
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            name: nextProps.contact.name,
+            email: nextProps.contact.email,
+            // phoneType: nextProps.contact.phoneType
+        })
+    }
+
+    verifyEmailId = () => {
+        const { email } = this.state;
+        // Regex from https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/email
+        return !isEmpty(email) && !(/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(email))
+    }
+
+    verifyName = () => {
+        const { name } = this.state;
+        return isEmpty(name) 
     }
     
-    _updateContactHandler(e) {
-		e.preventDefault();
-
-        let name = $('#edit_contact_modal').find('#contact_name').val();
-        let number = $('#edit_contact_modal').find('#contact_number').val();
-        let email = $('#edit_contact_modal').find('#contact_email').val();
-        let address = $('#edit_contact_modal').find('#contact_address').val();
-        this.props.editItemAction(this.props.editContactIdx, name, number,email,address);
-        
-		this._clearContactForm();
-	}
-
     
-	_clearContactForm() {
-		$('#edit_contact_modal').find('#contact_name').val('');
-        $('#edit_contact_modal').find('#contact_number').val('');
-        $('#edit_contact_modal').find('#contact_email').val('');
-        $('#edit_contact_modal').find('#contact_address').val('');
-		$('#edit_contact_modal').modal('hide');
-	}
-    
+
+    handleOnEmailChange = (event) => {
+        this.setState({ email: event.target.value})
+    }
+
+    handleOnNameChange = (event) => {
+        this.setState({ name: event.target.value})
+    }
+
+render = () => {
+    const { isVisible, onCancel, editContact, contact } = this.props;
+    const { name, number, phoneType, email, address } = contact;
+
+    return (
+<Modal id='edit_contact_modal' show={isVisible}>
+        <Modal.Header>
+        <Modal.Title>Edit {name} </Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body>
+            <form>
+                <FormGroup>
+                <ControlLabel>
+                    Name:
+                </ControlLabel>
+                <FormControl
+                id='contact_name'
+                type='text'
+                defaultValue={name}
+                onChange={this.handleOnNameChange}
+                />
+                {this.verifyName() && <HelpBlock> Name cannot be blank </HelpBlock>}
+                </FormGroup>
+
+                <FormGroup>
+                <ControlLabel>
+                    Phone:
+                </ControlLabel>
+                <FormControl
+                id='contact_number'
+                type='number'
+                defaultValue={number}
+                />
+                </FormGroup>
+
+                <FormGroup>
+                <ControlLabel>
+                     Type:
+                </ControlLabel>    
+                <FormControl 
+                id='contact_type'
+                defaultValue={phoneType} 
+                componentClass="select">
+                <option value="home"> home </option>
+                <option value="work"> work </option>
+                <option value="mobile"> mobile </option>
+                </FormControl>
+                </FormGroup>
+
+                <FormGroup>
+                <ControlLabel>
+                    Email id:
+                </ControlLabel>
+                <FormControl
+                id='contact_email'
+                type='text'
+                defaultValue={email}
+                onChange={this.handleOnEmailChange}
+                />
+                {this.verifyEmailId() && <HelpBlock> your email is invalid </HelpBlock>}
+                </FormGroup>
+
+                <FormGroup>
+                <ControlLabel>
+                    Address:
+                </ControlLabel>
+                <FormControl
+                id='contact_address'
+                type='text'
+                defaultValue={address}
+                />
+                </FormGroup>
+            </form>
+        </Modal.Body>
+
+        <Modal.Footer>
+        <Button onClick={onCancel}>Cancel</Button>
+        <Button bsStyle="primary" onClick={editContact} disabled={this.verifyEmailId() || this.verifyName()}>Update</Button>
+        </Modal.Footer>
+  </Modal>
+);
+
 }
 
-export default ContactModal;
+}
+

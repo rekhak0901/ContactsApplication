@@ -6,8 +6,8 @@ import AddContactModal from '../components/AddContactModal';
 import EditContactModal from '../components/EditContactModal';
 import { Modal } from 'react-bootstrap';
 import * as actions from '../redux/actions';
-import AddContactModal2 from '../components/AddContactModal2'
-import EditContactModal2 from '../components/EditContactModal2'
+
+
 
 export class App extends Component {
     constructor(props, context) {
@@ -21,10 +21,16 @@ export class App extends Component {
     }
     
 
-        
+    /*
+    * The isAddContactModalVisible is set to true only when the Add button (+) is clicked
+    */
     openAddModal = () => {
         this.setState({isAddContactModalVisible: true})
     }
+
+    /*
+    * addContactModal and editContactModal disappear when cancel button is clicked
+    */
     onCancelClick = () => {
         this.setState({
         isAddContactModalVisible: false, 
@@ -32,9 +38,8 @@ export class App extends Component {
     }
 
     /*
-    * @param index:number of the contact being edited
     * 1. find the contact being edited in the contacts collection
-    * 2. shows the editContactModal
+    * 2. show the editContactModal
     * 3. set the index to the state to be used by the editContact action to edit the right contact 
     * 4. set the contact being edited to the state to be used as default values for the edit contact modal
     */
@@ -48,28 +53,36 @@ export class App extends Component {
         });
     }
 
+    deleteItemAction = (index) => () => {
+        const { deleteItem } = this.props.actions
+        deleteItem(index);
+    }
+
+    /*
+    *get the right index from the state
+    *call the save with the index and values from the input fields
+    *passing into action creator
+    *set isEditContactModalVisible to false
+    */
     handleOnEditContact = () => {
         const {editContactIndex}=this.state;
         const name = $('#edit_contact_modal').find('#contact_name').val();
         const phone = $('#edit_contact_modal').find('#contact_number').val();
+        const phoneType = $('#edit_contact_modal').find('#contact_type').val();
         const email = $('#edit_contact_modal').find('#contact_email').val();
         const address = $('#edit_contact_modal').find('#contact_address').val();
-        this.props.actions.editItem(editContactIndex,name,phone,email,address)
+        this.props.actions.editItem(editContactIndex,name,phone,phoneType,email,address)
         this.setState({isEditContactModalVisible: false})
-        //get the right index from the state
-        //call the save with the index and values from the input fields
-
-        //clear the index on state for editOCntactIndex
-        //set isEditContactModalVisible to false
+        
     }
 
     handleOnAddContact = () => {
-    
         const name = $('#add_contact_modal').find('#contact_name').val();
         const phone = $('#add_contact_modal').find('#contact_number').val();
+        const phoneType =$('#add_contact_modal').find('#contact_type').val();
         const email = $('#add_contact_modal').find('#contact_email').val();
         const address = $('#add_contact_modal').find('#contact_address').val();
-        this.props.actions.addItem(name,phone,email,address)
+        this.props.actions.addItem(name,phone,phoneType,email,address)
         this.setState({isAddContactModalVisible: false})
     }
 
@@ -87,43 +100,24 @@ export class App extends Component {
                 <div className="panel-body">
                     <ContactList contacts={contacts} 
                         openEditContactModal={this.openEditContactModal}
-                        deleteItemAction={this.props.actions.deleteItem}
-                        //we need to pass in here the openEditContactModal Action so that we can trigger it on click of the pencil button
-                        //this will replace setEditContactIdx
-                        setEditContactIdx={this._setEditContactIdx.bind(this)}
+                        deleteItemAction={this.deleteItemAction}
                     />
                 </div>
             </div>
-            {/* <AddContactModal addItemAction={this.props.actions.addItem}/> */}
-            {/* lets rebuild this to take in the contact ( so we know what to display initially),
-             and the index ( because the editContact actions takes index as a parameter to update the store)
-             lets also create a bootstrap component instead */}
 
-            {/* <EditContactModal  editContactIdx={this.state.editContactIdx} editItemAction={this.props.actions.editItem}/> */}
-            <AddContactModal2 
+            <AddContactModal 
                 isVisible={isAddContactModalVisible}
                 onCancel={this.onCancelClick}
                 addContact={this.handleOnAddContact}
             />
-            <EditContactModal2
-            isVisible={isEditContactModalVisible}
-            onCancel={this.onCancelClick}
-            editContact={this.handleOnEditContact} 
-            contact={contact}  
+            <EditContactModal
+                isVisible={isEditContactModalVisible}
+                onCancel={this.onCancelClick}
+                editContact={this.handleOnEditContact} 
+                contact={contact}  
             />          
         </div>
         );
-    }
-
-
-    
-    _setEditContactIdx(idx) {
-        // might wanna delete this
-        var contacts = this.state.contacts;
-        
-        this.setState({
-            editContactIdx: idx
-        });
     }
 }
 
