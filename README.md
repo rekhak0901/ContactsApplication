@@ -31,10 +31,11 @@ The back-end will be seeded and mocked out with just sample data.
  3. Webpack: the file bundler when building the project
  4. ReactJS: the front-end framework used to design the user interface
  5. Redux: the state management library to handle data
- 6. Bootstrap: the components used to interact with the web page ( menu's, buttons, inputfields)
+ 
   
 ### Supporting Libraries
  1. Lodash: an utility library to work with data in javascript
+ 2. Bootstrap: the components used to interact with the web page ( menu's, buttons, inputfields)
   
   
   
