@@ -10,31 +10,14 @@ The app mainly shows - how to use Redux and basic concepts (action, reducer and 
 `npm install`
 
 
-## Run
-
-For this simple app, there are several startup scripts in package.json:
-
-- "clean": "rimraf dist",
-- "build:webpack": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
-- "build": "npm run clean && npm run build:webpack",
-- "prod": "npm run build && node server.js",
-- "dev": "node devServer.js",
-- "start": "npm run dev",
-- "lint": "eslint src || exit 0"
-
-
 ### Running Dev Server
 
 Use `npm start` or `npm run dev` command to start the dev server.
 
-### Building and Running Production Server
-
-Use `npm run prod` to build and then run production server.
-
 
 
 # intuit-contacts-manager
-This will make managing contacts a breeze
+This will make managing contacts a breeze...
 
 By Rekha, for Intuit- as a take home programming challenge.
 
@@ -149,7 +132,7 @@ project start
 3. try to understand the application
 
 ## Day 11
-1. Revisited Udemy course on modern react with redux.(left with few more courses to complete)
+1. Revisit Udemy course on modern react with redux.(left with few more courses to complete)
 2. Work on Contacts Application
 
 ## Day 12
