@@ -8,14 +8,14 @@ import './styles/main.css';
 const initialState = {
   contacts: [{
     name: 'rekha',
-    number: '13111111191',
-    phoneType: 'work',
+    phone1: '13111111191',
+    phoneType1: 'work',
     email:'rekha@abc.com',
     address: '25 Ave at Port Imperial'
   }, {
     name: 'Will',
-    number: '13111191112',
-    phoneType: 'mobile',
+    phone1: '13111191112',
+    phoneType1: 'mobile',
     email:'will@gv.com',
     address:'57 chedword circle'
   }]

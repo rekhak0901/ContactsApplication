@@ -9,15 +9,13 @@ export default class EditContactModal extends Component {
         this.state = {
             email: '',
             name: '',
-    
         }
     }
 
     componentWillReceiveProps(nextProps){
         this.setState({
             name: nextProps.contact.name,
-            email: nextProps.contact.email,
-            // phoneType: nextProps.contact.phoneType
+            email: nextProps.contact.email
         })
     }
 
@@ -44,7 +42,17 @@ export default class EditContactModal extends Component {
 
     render = () => {
         const { isVisible, onCancel, editContact, contact } = this.props;
-        const { name, number, phoneType, email, address } = contact;
+        const {
+             name,
+             phone1, 
+             phoneType1,
+             phone2, 
+             phoneType2, 
+             phone3, 
+             phoneType3, 
+             email, 
+             address 
+        } = contact;
 
         return (
             <Modal id='edit_contact_modal' show={isVisible}>
@@ -68,30 +76,51 @@ export default class EditContactModal extends Component {
                         </FormGroup>
 
                         <FormGroup>
-                            <ControlLabel>
-                                Phone:
-                            </ControlLabel>
-                            <FormControl
-                                id='contact_number'
-                                type='number'
-                                defaultValue={number}
-                            />
-                        </FormGroup>
-
-                        <FormGroup>
-                            <ControlLabel>
-                                Type:
-                            </ControlLabel>    
-                            <FormControl 
-                                id='contact_type'
-                                defaultValue={phoneType} 
-                                componentClass="select">
-
-                                <option value="home"> home </option>
-                                <option value="work"> work </option>
-                                <option value="mobile"> mobile </option>
-                            </FormControl>
-                        </FormGroup>
+                        <ControlLabel>
+                            Phone:
+                        </ControlLabel>
+                        <FormControl
+                            id='contact_number_1'
+                            type='number'
+                            defaultValue={phone1}
+                        />
+                       <FormControl 
+                            componentClass="select" 
+                            defaultValue={phoneType1}
+                            id='contact_type_1'
+                        >
+                        <option value="home"> home </option>
+                        <option value="work"> work </option>
+                        <option value="mobile"> mobile </option>
+                        </FormControl>
+                        <FormControl
+                            id='contact_number_2'
+                            type='number'
+                            defaultValue={phone2}
+                        />
+                       <FormControl 
+                            componentClass="select" 
+                            defaultValue={phoneType2}
+                            id='contact_type_2'
+                        >
+                            <option value="work"> work </option>
+                            <option value="home"> home </option>
+                            <option value="mobile"> mobile </option>
+                        </FormControl>
+                        <FormControl
+                            id='contact_number_3'
+                            type='number'
+                            defaultValue={phone3}
+                        />
+                        <FormControl 
+                            componentClass="select" 
+                            defaultValue={phoneType3}
+                            id='contact_type_3'>
+                            <option value="mobile"> mobile </option>
+                            <option value="work"> work </option>
+                            <option value="home"> home </option>
+                        </FormControl>
+                    </FormGroup>
 
                         <FormGroup>
                             <ControlLabel>

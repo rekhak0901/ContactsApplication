@@ -9,11 +9,14 @@ function contacts(state = [], action) {
           ...state,
           {
             name: action.name,
-            number: action.number,
-            phoneType: action.phoneType,
+            phone1: action.phone1,
+            phoneType1: action.phoneType1, 
+            phone2: action.phone2, 
+            phoneType2: action.phoneType2, 
+            phone3: action.phone3, 
+            phoneType3: action.phoneType3,
             email: action.email,
-            address:action.address
-                    // reduce the new phone type into the store
+            address:action.address,
           }
         ];
 
@@ -26,7 +29,17 @@ function contacts(state = [], action) {
     case EDIT_ITEM:
       return [
           ...state.slice(0, action.index),
-          Object.assign({}, { 'name': action.name, 'number': action.number, 'phoneType': action.phoneType, 'email':action.email, 'address':action.address }),
+          Object.assign({}, { 
+            name: action.name,
+            phone1: action.phone1,
+            phoneType1: action.phoneType1, 
+            phone2: action.phone2, 
+            phoneType2: action.phoneType2, 
+            phone3: action.phone3, 
+            phoneType3: action.phoneType3,
+            email: action.email,
+            address: action.address,
+           }),
           ...state.slice(action.index + 1)
         ];
 

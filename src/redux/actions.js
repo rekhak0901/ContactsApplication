@@ -9,14 +9,18 @@ export const EDIT_ITEM = 'EDIT_ITEM';
 /*
  * actions creators
  */
-export function addItem(name, number, phoneType, email, address) {
+export function addItem(name, phone1, phoneType1, phone2, phoneType2, phone3, phoneType3, email, address,) {
   return {
     type: ADD_ITEM,
     name,
-    number,
-    phoneType,
+    phone1,
+    phoneType1,
+    phone2,
+    phoneType2,
+    phone3,
+    phoneType3,
     email,
-    address
+    address,
   };
 }
 
@@ -27,13 +31,17 @@ export function deleteItem(index) {
   };
 }
 
-export function editItem(index, name, number, phoneType, email, address) {
+export function editItem(index, name, phone1, phoneType1, phone2, phoneType2, phone3, phoneType3, email, address) {
   return {
     type: EDIT_ITEM,
     index,
     name,
-    number,
-    phoneType,
+    phone1,
+    phoneType1,
+    phone2,
+    phoneType2,
+    phone3,
+    phoneType3,
     email,
     address
   };

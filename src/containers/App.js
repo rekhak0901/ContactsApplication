@@ -71,11 +71,17 @@ export class App extends Component {
     handleOnEditContact = () => {
         const {editContactIndex}=this.state;
         const name = $('#edit_contact_modal').find('#contact_name').val();
-        const phone = $('#edit_contact_modal').find('#contact_number').val();
-        const phoneType = $('#edit_contact_modal').find('#contact_type').val();
+        
+        const phone1 = $('#edit_contact_modal').find('#contact_number_1').val();
+        const phoneType1 = $('#edit_contact_modal').find('#contact_type_1').val();
+        const phone2 = $('#edit_contact_modal').find('#contact_number_2').val();
+        const phoneType2 = $('#edit_contact_modal').find('#contact_type_2').val();
+        const phone3 = $('#edit_contact_modal').find('#contact_number_3').val();
+        const phoneType3 = $('#edit_contact_modal').find('#contact_type_3').val();
+        
         const email = $('#edit_contact_modal').find('#contact_email').val();
         const address = $('#edit_contact_modal').find('#contact_address').val();
-        this.props.actions.editItem(editContactIndex,name,phone,phoneType,email,address)
+        this.props.actions.editItem(editContactIndex,name, phone1, phoneType1, phone2, phoneType2, phone3, phoneType3, email, address)
         this.setState({isEditContactModalVisible: false})
         
     }
@@ -87,16 +93,22 @@ export class App extends Component {
     */
     handleOnAddContact = () => {
         const name = $('#add_contact_modal').find('#contact_name').val();
-        const phone = $('#add_contact_modal').find('#contact_number').val();
-        const phoneType =$('#add_contact_modal').find('#contact_type').val();
+        
+        const phone1 = $('#add_contact_modal').find('#contact_number_1').val();
+        const phoneType1 = $('#add_contact_modal').find('#contact_type_1').val();
+        const phone2 = $('#add_contact_modal').find('#contact_number_2').val();
+        const phoneType2 = $('#add_contact_modal').find('#contact_type_2').val();
+        const phone3 = $('#add_contact_modal').find('#contact_number_3').val();
+        const phoneType3 = $('#add_contact_modal').find('#contact_type_3').val();
+        
         const email = $('#add_contact_modal').find('#contact_email').val();
         const address = $('#add_contact_modal').find('#contact_address').val();
-        this.props.actions.addItem(name,phone,phoneType,email,address)
+        this.props.actions.addItem(name, phone1, phoneType1, phone2, phoneType2, phone3, phoneType3, email, address)
         this.setState({isAddContactModalVisible: false})
     }
 
     render() {
-        const {contacts }= this.props;
+        const { contacts }= this.props;
         const { isAddContactModalVisible, contact, isEditContactModalVisible } =  this.state;
 
         return (
@@ -104,7 +116,10 @@ export class App extends Component {
             <div id="main-content" className="panel panel-info" >
                 <div className="panel-heading">
                     <span className="panel-title">Contacts Manager</span>
-                    <button className="btn btn-default btn-sm pull-right" onClick={this.openAddModal}><span className="glyphicon glyphicon-plus"></span></button>
+                    <button className="btn btn-default btn-sm pull-right" 
+                            onClick={this.openAddModal}>
+                        <span className="glyphicon glyphicon-plus"></span>
+                    </button>
                 </div>
                 <div className="panel-body">
                     <ContactList contacts={contacts} 

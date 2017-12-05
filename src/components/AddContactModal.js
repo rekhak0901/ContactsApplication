@@ -1,7 +1,7 @@
-import React , { Component } from 'react';
+import React , { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { Modal, Button, FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
-import { isEmpty } from 'lodash';
+import { isEmpty, map, range } from 'lodash';
 
 export default class AddContactModal extends Component {
 
@@ -22,10 +22,8 @@ export default class AddContactModal extends Component {
     verifyName = () => {
         const {name} = this.state;
         return isEmpty(name);
-        
     }
     
-
     handleOnEmailChange = (event) => {
         this.setState({ email: event.target.value})
     }
@@ -34,14 +32,34 @@ export default class AddContactModal extends Component {
         this.setState({ name: event.target.value})
     }
 
-        
+    handleAddContact = () => {
+        const { addContact } = this.props
+        addContact()
+        this.setState({
+            email: '',
+            name: '',
+        })
+    }
+
+    handleCancelContact = () => {
+        const { onCancel } = this.props
+        onCancel()
+        this.setState({
+            email: '',
+            name: '',
+        })
+    }
+
+
     render = () => {
-        const { isVisible, addContact, onCancel } = this.props;
+
+        const { isVisible, onCancel } = this.props;
+        const { rows } = this.state;
         return (
             
             <Modal id='add_contact_modal' show={isVisible}>
                 <Modal.Header>
-                <Modal.Title>Add a new contact</Modal.Title>
+                    <Modal.Title>Add a new contact</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
@@ -58,27 +76,52 @@ export default class AddContactModal extends Component {
                             />
                             {this.verifyName() && <HelpBlock> Name cannot be blank </HelpBlock>}
                         </FormGroup>
-
+                        
                         <FormGroup>
                             <ControlLabel>
-                                        Phone:
+                                Phone:
                             </ControlLabel>
                             <FormControl
-                                id='contact_number'
+                                id='contact_number_1'
                                 type='number'
                                 placeholder="Enter phone number"
                             />
                            <FormControl 
                                 componentClass="select" 
                                 placeholder='Phone Type'
-                                id='contact_type'>
-                                        
-                                <option value="home"> home </option>
+                                id='contact_type_1'
+                            >
+                            <option value="home"> home </option>
+                            <option value="work"> work </option>
+                            <option value="mobile"> mobile </option>
+                            </FormControl>
+                            <FormControl
+                                id='contact_number_2'
+                                type='number'
+                                placeholder="Enter phone number"
+                            />
+                           <FormControl 
+                                componentClass="select" 
+                                placeholder='Phone Type'
+                                id='contact_type_2'>
                                 <option value="work"> work </option>
+                                <option value="home"> home </option>
                                 <option value="mobile"> mobile </option>
                             </FormControl>
+                            <FormControl
+                                id='contact_number_3'
+                                type='number'
+                                placeholder="Enter phone number"
+                            />
+                            <FormControl 
+                                componentClass="select" 
+                                placeholder='Phone Type'
+                                id='contact_type_3'>
+                                <option value="mobile"> mobile </option>
+                                <option value="work"> work </option>
+                                <option value="home"> home </option>
+                            </FormControl>
                         </FormGroup>
-
                         <FormGroup>
                             <ControlLabel>
                                 Email id:
@@ -106,13 +149,13 @@ export default class AddContactModal extends Component {
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button onClick={onCancel}>Cancel</Button>
+                    <Button onClick={this.handleCancelContact}>Cancel</Button>
                     <Button 
                         bsStyle="primary" 
-                        onClick={addContact} 
+                        onClick={this.handleAddContact} 
                         disabled = {this.verifyEmailId() || this.verifyName()}
                     > 
-                        Add
+                    Add
                     </Button>
                 </Modal.Footer>
             </Modal>
