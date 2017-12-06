@@ -19,7 +19,7 @@ export default class ContactItem extends Component {
         const { contact : { phone2, phoneType2 } } = this.props;
         return (
             <div>
-            <strong title="Phone2">Phone :</strong> {phone2}
+            <strong title="Phone2">Phone:</strong> {phone2}
             &nbsp;&nbsp;
             <strong title="PhoneType2">Type:</strong> {phoneType2}<br/>
             </div>
@@ -30,7 +30,7 @@ export default class ContactItem extends Component {
         const { contact : { phone3, phoneType3 } } = this.props;
         return (
             <div>
-            <strong title="Phone3">Phone :</strong> {phone3}
+            <strong title="Phone3">Phone:</strong> {phone3}
             &nbsp;&nbsp;
             <strong title="PhoneType3">Type:</strong> {phoneType3}<br/>
             </div>
