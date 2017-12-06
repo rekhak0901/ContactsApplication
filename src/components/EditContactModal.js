@@ -82,6 +82,7 @@ export default class EditContactModal extends Component {
                         <FormControl
                             id='contact_number_1'
                             type='number'
+                            placeholder="Enter phone number"
                             defaultValue={phone1}
                         />
                        <FormControl 
@@ -96,6 +97,7 @@ export default class EditContactModal extends Component {
                         <FormControl
                             id='contact_number_2'
                             type='number'
+                            placeholder="Enter phone number"
                             defaultValue={phone2}
                         />
                        <FormControl 
@@ -110,6 +112,7 @@ export default class EditContactModal extends Component {
                         <FormControl
                             id='contact_number_3'
                             type='number'
+                            placeholder="Enter phone number"
                             defaultValue={phone3}
                         />
                         <FormControl 
