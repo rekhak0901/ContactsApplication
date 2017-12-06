@@ -32,6 +32,11 @@ export default class AddContactModal extends Component {
         this.setState({ name: event.target.value})
     }
 
+    /*
+    * had the setState to empty again because of a bug where the second time you add a contact
+    * there would have been data already in the state and it would allow you to add a contact
+    * without a name
+    */
     handleAddContact = () => {
         const { addContact } = this.props
         addContact()

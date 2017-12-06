@@ -12,6 +12,12 @@ export default class EditContactModal extends Component {
         }
     }
 
+
+    /*
+    * fix for a bug so that when you give the component new props the state is not empty and shows the validation message
+    * even though there is actual data in the store for the name and email field
+    * the previous bug was showing an empty validitation error even though there was a name
+    */
     componentWillReceiveProps(nextProps){
         this.setState({
             name: nextProps.contact.name,
