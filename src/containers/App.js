@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { getState } from 'redux';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import ContactList from '../components/ContactList';
@@ -6,7 +7,9 @@ import AddContactModal from '../components/AddContactModal';
 import EditContactModal from '../components/EditContactModal';
 import { Modal } from 'react-bootstrap';
 import * as actions from '../redux/actions';
-
+import RequestApi from '../redux/actions';
+import { dispatch } from 'redux';
+//import RequestApi from '../../actions/RequestApi';
 
 
 export class App extends Component {
@@ -18,9 +21,16 @@ export class App extends Component {
             editContactIndex: undefined,
             contact : {}
         };
+        // console.log(store.getState());
     }
-    
 
+    componentWillMount () {
+    // //     //this.props.store.subscribe(this.forceUpdate.bind(this.contact));
+    //     this.context.store.dispatch(RequestApi())
+    this.props.actions.RequestApi;
+    }
+
+    
     /*
     * The isAddContactModalVisible is set to true only when the Add button (+) is clicked
     */
@@ -51,6 +61,7 @@ export class App extends Component {
             contact,
             editContactIndex:index
         });
+        
     }
     
     /*
@@ -108,10 +119,12 @@ export class App extends Component {
     }
 
     render() {
+        //const { contacts }= this.props;
         const { contacts }= this.props;
         const { isAddContactModalVisible, contact, isEditContactModalVisible } =  this.state;
 
         return (
+    
         <div className="row">
             <div id="main-content" className="panel panel-info" >
                 <div className="panel-heading">
@@ -120,9 +133,13 @@ export class App extends Component {
                             onClick={this.openAddModal}>
                         <span className="glyphicon glyphicon-plus"></span>
                     </button>
+                    <button className="btn btn-default btn-sm pull-right" 
+                            onClick={this.props.actions.RequestApi}>
+                        <span className="glyphicon glyphicon-minus"></span>
+                    </button>
                 </div>
                 <div className="panel-body">
-                    <ContactList contacts={contacts} 
+                    <ContactList contacts={contacts}
                         openEditContactModal={this.openEditContactModal}
                         deleteItemAction={this.deleteItemAction}
                     />
@@ -134,6 +151,7 @@ export class App extends Component {
                 onCancel={this.onCancelClick}
                 addContact={this.handleOnAddContact}
             />
+            
             <EditContactModal
                 isVisible={isEditContactModalVisible}
                 onCancel={this.onCancelClick}
@@ -146,7 +164,7 @@ export class App extends Component {
 }
 
 var mapStateToProps = function (state) {
-    return state;
+     return  state;
 };
 
 var mapDispatchToProps = function (dispatch) {

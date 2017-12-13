@@ -14,11 +14,15 @@ module.exports = {
       'redux-thunk'
     ]
   },
+  // output: {
+  //   path: path.join(__dirname, 'dist'),
+  //   filename: 'bundle.js',
+  //   publicPath: '/static/'
+  // },
   output: {
-    path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/static/'
-  },
+    path: path.resolve(__dirname, 'public'),
+    },
   plugins: [
     /**
      * This plugin assigns the module and chunk ids by occurence count. What this

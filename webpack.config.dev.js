@@ -1,6 +1,13 @@
 var path = require('path');
 var webpack = require('webpack');
 
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
+  template: './public/index.html',
+  filename: 'index.html',
+  inject: 'body'
+})
+
 module.exports = {
   devtool: 'eval',
   entry: {
@@ -18,17 +25,17 @@ module.exports = {
     ]
   }
   ,
+  //entry: './src/index.js', 
   output: {
-    path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
-    publicPath: '/static/'
+  filename: 'bundle.js',
+  path: path.resolve(__dirname, 'public'),
   },
   plugins: [
     /**
      * This is where the magic happens! You need this to enable Hot Module Replacement!
      */
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"vendor.bundle.js"),
+    //new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"vendor.bundle.js"),
     /**
      * NoErrorsPlugin prevents your webpack CLI from exiting with an error code if
      * there are errors during compiling - essentially, assets that include errors
@@ -44,6 +51,8 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development')
     }),
+    new webpack.optimize.CommonsChunkPlugin('bundle', 'bundle.js', Infinity)
+    
   ],
   module: {
     loaders: [{

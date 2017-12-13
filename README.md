@@ -9,11 +9,15 @@ The app mainly shows - how to use Redux and basic concepts (action, reducer and 
 
 `npm install`
 
+###webpack
+
+'npm run-script build'
 
 ### Running Dev Server
 
 Use `npm start` or `npm run dev` command to start the dev server.
 
+http://localhost:3001
 
 
 # intuit-contacts-manager

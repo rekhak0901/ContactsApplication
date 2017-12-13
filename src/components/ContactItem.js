@@ -47,8 +47,13 @@ export default class ContactItem extends Component {
             email,
             address,
             phone1,
+            phoneType1,
             phone2,
+            phoneType2,
             phone3,
+            phoneType3,
+            _id,
+            __v
           }
         } = this.props;
 
